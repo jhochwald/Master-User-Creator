@@ -2,7 +2,8 @@
   <Code><![CDATA[#Define a Param block to use custom parameters in the project
 #Param ($CustomParameter)
 
-function Main {
+function Main
+{
 <#
     .SYNOPSIS
         The Main function starts the project application.
@@ -17,8 +18,9 @@ function Main {
         To get the console output in the Packager (Forms Engine) use: 
 		$ConsoleOutput (Type: System.Collections.ArrayList)
 #>
-	Param ([String]$Commandline)
-		
+	param ([String]
+		$Commandline)
+	
 	#--------------------------------------------------------------------------
 	
 	$Global:Licenses2Add = New-Object 'System.Collections.Generic.List[System.Object]'
@@ -45,21 +47,21 @@ function Main {
 	}
 	
 	$PasswordSettings = (Get-ItemProperty 'HKCU:\Software\TheLazyAdministrator\MasterUserCreator\' | Get-ItemProperty -Name PasswordGen -ErrorAction SilentlyContinue).PasswordGen
-	If ($null -eq $PasswordSettings)
+	if ($null -eq $PasswordSettings)
 	{
 		Get-Item 'HKCU:\Software\TheLazyAdministrator\MasterUserCreator\' -Force | Set-ItemProperty -Name PasswordGen -Value 0 -Force | Out-Null
 		
 	}
 	
 	$UserFormatDisplayName = (Get-ItemProperty 'HKCU:\Software\TheLazyAdministrator\MasterUserCreator\' | Get-ItemProperty -Name UserFormatDisplayName -ErrorAction SilentlyContinue).UserFormatDisplayName
-	If ($null -eq $UserFormatDisplayName)
+	if ($null -eq $UserFormatDisplayName)
 	{
 		Get-Item 'HKCU:\Software\TheLazyAdministrator\MasterUserCreator\' -Force | Set-ItemProperty -Name UserFormatDisplayName -Value "%FirstName% %Initial% %LastName%" -Force | Out-Null
 		
 	}
 	
 	$O365FormatDisplayName = (Get-ItemProperty 'HKCU:\Software\TheLazyAdministrator\MasterUserCreator\' | Get-ItemProperty -Name UserFormatO365DisplayName -ErrorAction SilentlyContinue).UserFormatO365DisplayName
-	If ($null -eq $UserFormatDisplayName)
+	if ($null -eq $UserFormatDisplayName)
 	{
 		Get-Item 'HKCU:\Software\TheLazyAdministrator\MasterUserCreator\' -Force | Set-ItemProperty -Name UserFormatO365DisplayName -Value "%FirstName% %LastName%" -Force | Out-Null
 		
@@ -67,7 +69,7 @@ function Main {
 	
 	
 	$O365EmailFormatting = (Get-ItemProperty 'HKCU:\Software\TheLazyAdministrator\MasterUserCreator\' | Get-ItemProperty -Name UserFormatO365Email -ErrorAction SilentlyContinue).UserFormatO365Email
-	If (($O365EmailFormatting -eq $config) -or ($config -eq ""))
+	if (($O365EmailFormatting -eq $config) -or ($config -eq ""))
 	{
 		$config = "%FirstLetterFirstName%%LastName%%UserPrincipalNameDomain%"
 		Get-Item 'HKCU:\Software\TheLazyAdministrator\MasterUserCreator\' -Force | Set-ItemProperty -Name UserFormatO365Email -Value $config -Force | Out-Null
@@ -75,7 +77,7 @@ function Main {
 	
 	#Thank you to user that has helped suggest items for v2
 	$Hill = (Get-ItemProperty 'HKCU:\Software\TheLazyAdministrator\MasterUserCreator\' | Get-ItemProperty -Name AHill -ErrorAction SilentlyContinue).AHill
-	If ($Hill -eq 1)
+	if ($Hill -eq 1)
 	{
 		Add-Type -AssemblyName System.Windows.Forms
 		[System.Windows.Forms.MessageBox]::Show("Thank you Aaron Hill for all your ideas in improving this application, V2 wouldn't be as feature filled without all your ideas.", 'Thank You', 'OK')
@@ -84,7 +86,7 @@ function Main {
 	
 	#--------------------------------------------------------------------------
 	
-	if((Show-MainForm_psf) -eq 'OK')
+	if ((Show-MainForm_psf) -eq 'OK')
 	{
 		
 	}
