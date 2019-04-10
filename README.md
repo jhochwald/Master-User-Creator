@@ -2,7 +2,7 @@
 
 ## Links
 
-- [Download EXE File](https://github.com/jhochwald/AD-O365-Master-User-Creator/blob/master/bin/x64/Master%20User%20Creator.exe?raw=true)
+- [Download EXE File](https://github.com/jhochwald/Master-User-Creator/raw/master/bin/x64/Master%20User%20Creator.exe)
 - [Blog Post from the Author](http://thelazyadministrator.com/2018/07/10/tool-create-and-configure-active-directory-and-office-365-users-at-once/)
 - [Original Repository](https://github.com/bwya77/Master-User-Creator)
 
